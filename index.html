@@ -1,106 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <title>Cadastro e Listagem</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&family=Roboto:wght@400;700&display=swap');
-    body {
-      font-family: Fira Sans Condensed, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #060717;
-      color: #fff;
-      padding: 1em;
-      text-align: center;
-    }
-    header h1:hover {
-      transform: scale(2);
-      transition-duration: 1s;
-      transition-timing-function: linear; 
-    }
-
-    nav {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      background-color: #1A2740;
-      padding: 0.5em;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      text-align: center;
-      padding: 0.5em;
-    }
-    main {
-      background-color: #455079;
-      font-family: Fira Sans Condensed, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    #cadastro {
-      display: none;
-      background-color: #817CB9;
-      padding: 20px;
-      border-radius: 8px;
-      width: 60vh;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    #resetar {
-      margin-top: 20px;
-    }
-
-    fieldset{
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-      border-radius: 10px;
-      border-color: #BCA2DF;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: auto;
-      border-radius: 8px;
-    }
-    table h2 {
-      text-align: center;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      min-width: 10em;
-      padding: 0.5em;
-      text-align: left;
-    }
-
-    @media screen and (max-width: 600px) {
-      nav {
-        grid-template-columns: 1fr;
-      }
-      main {
-        min-height: 160vh;
-      }
-      th, td {
-      border: 1px solid #ddd;
-      min-width: 10em;
-      padding: 0.5em;
-      text-align: left;
-    }
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -124,21 +31,31 @@
             <label for="classe">Classe:</label>
             <select id="classe" required>
                 <option value="" selected>-----Selecione-----</option>
+                <option value="Artifice">Artifice</option>
+                <option value="Bárbaro">Bárbaro</option>
+                <option value="Bardo">Bardo</option>
+                <option value="Bruxo">Bruxo</option>
+                <option value="Clérigo">Clérigo</option>
+                <option value="Druida">Druida</option>
+                <option value="Feiticeiro">Feiticeiro</option>
                 <option value="Guerreiro">Guerreiro</option>
                 <option value="Mago">Mago</option>
-                <option value="Druida">Druida</option>
-                <option value="Bardo">Bardo</option>
-                <option value="Clerigo">Clerigo</option>
+                <option value="Monge">Monge</option>
+                <option value="Paladino">Paladino</option>
+                <option value="Ranger">Ranger</option>
             </select>   
 
             <label for="raca">Raça:</label>
             <select id="raca" required>
                 <option value="" selected>-----Selecione-----</option>
-                <option value="Humano">Humano</option>
-                <option value="Elfo">Elfo</option>
                 <option value="Anão">Anão</option>
-                <option value="Pequenino">Pequenino</option>
+                <option value="Draconato">Draconato</option>
+                <option value="Elfo">Elfo</option>
+                <option value="Humano">Humano</option>
                 <option value="Gnomo">Gnomo</option>
+                <option value="Meio-Elfo">Meio-Elfo</option>
+                <option value="Meio-Orc">Meio-Orc</option>
+                <option value="Pequenino">Pequenino</option>
                 <option value="Tiferino">Tiferino</option>
             </select> 
 
@@ -165,91 +82,24 @@
     </div>
 
     <div id="listagem" style="display: none;">
-      <h2>Sua lista de Personagens</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Classe</th>
-            <th>Raça</th>
-            <th>Alinhamento</th>
-            <th>Descrição</th>
-          </tr>
-        </thead>
-        <tbody id="listaItems"></tbody>
-      </table>
+      <h2 class="tabela-titulo">Sua lista de Personagens</h2>
+      <div class="tabela-container">
+        <table class="tabela">
+          <thead> </strong>
+            <tr>
+              <th class="colElementos"><strong>Nome</strong></th>
+              <th class="colElementos"><strong>Classe</strong></th>
+              <th class="colElementos"><strong>Raça</strong></th>
+              <th class="colElementos"><strong>Alinhamento</strong></th>
+              <th class="colElementos"><strong>Descrição</strong></th>
+            </tr>
+          </thead>
+          <tbody id="listaItems"></tbody>
+        </table>
+      </div>
       <button id="resetar" type="reset" onclick="resetarLista()">Resetar Lista</button>
     </div>
-    
   </main>
-
-  <script>
-    function showCadastro() {
-      document.getElementById("cadastro").style.display = "block";
-      document.getElementById("listagem").style.display = "none";
-    }
-
-    function showListagem() {
-      document.getElementById("cadastro").style.display = "none";
-      document.getElementById("listagem").style.display = "block";
-      listarItens();
-    }
-
-    function cadastrarItem(event) {
-      event.preventDefault();
-      const nome = document.getElementById("nome").value;
-      const classe = document.getElementById("classe").value;
-      const raca = document.getElementById("raca").value;
-      const alinhamento = document.getElementById("alinhamento").value;
-      const descricao = document.getElementById("descricao").value;
-// ----------------------------------------------
-      if (nome && classe && raca && alinhamento &&descricao) {
-        const item = { nome, classe, raca, alinhamento, descricao };
-        const items = JSON.parse(localStorage.getItem("items")) || [];
-        items.push(item);
-        localStorage.setItem("items", JSON.stringify(items));
-        document.getElementById("nome").value = "";
-        document.getElementById("classe").value = "";
-        document.getElementById("raca").value = "";
-        document.getElementById("alinhamento").value = "";
-        document.getElementById("descricao").value = "";
-        alert("Personagem cadastrado com sucesso!");
-      } else {
-        alert("Por favor, preencha todos os campos obrigatórios.");
-      }
-    }
-
-    function listarItens() {
-      const items = JSON.parse(localStorage.getItem("items")) || [];
-      const listaItems = document.getElementById("listaItems");
-
-      listaItems.innerHTML = "";
-
-      items.forEach(item => {
-        const row = document.createElement("tr");
-        const nomeCell = document.createElement("td");
-        const classeCell = document.createElement("td");
-        const racaCell = document.createElement("td");
-        const alinhamentoCell = document.createElement("td");
-        const descricaoCell = document.createElement("td");
-
-        nomeCell.textContent = item.nome;
-        classeCell.textContent = item.classe;
-        racaCell.textContent = item.raca;
-        alinhamentoCell.textContent = item.alinhamento;
-        descricaoCell.textContent = item.descricao;
-
-        row.appendChild(nomeCell);
-        row.appendChild(classeCell);
-        row.appendChild(racaCell);
-        row.appendChild(alinhamentoCell);
-        row.appendChild(descricaoCell);
-        listaItems.appendChild(row);
-      });
-    }
-    function resetarLista(){
-        localStorage.clear();
-    }
-  </script>
+  <script src="./script.js"></script>
 </body>
 </html>
